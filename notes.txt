@@ -1,0 +1,21 @@
+1)
+def get_skin_threshold(roi, rect1, rect2, rect_size):
+    rect1 = roi[rect1[0]:rect1[0] + rect_size, rect1[1]:rect1[1]+rect_size, :]
+    rect2 = roi[rect2[0]:rect2[0] + rect_size, rect2[1]:rect2[1] + rect_size, :]
+    offsetLowThreshold = 30
+    offsetHighThreshold = 60
+    mean1 = np.array(cv2.mean(rect1), dtype=np.uint8)
+    mean2 = np.array(cv2.mean(rect2), dtype=np.uint8)
+    hLowThreshold = max(min(mean1[0], mean2[0]) - offsetLowThreshold, 0)
+    hHighThreshold = min(max(mean1[0], mean2[0]) + offsetHighThreshold, 255)
+
+    sLowThreshold = max(min(mean1[1], mean2[1]) - offsetLowThreshold, 0)
+    sHighThreshold = min(max(mean1[1], mean2[1]) + offsetHighThreshold, 255)
+
+    vLowThreshold = max(min(mean1[2], mean2[2]) - offsetLowThreshold, 0)
+    vHighThreshold = min(max(mean1[2], mean2[2]) + offsetHighThreshold, 255)
+
+    result = (np.array([hLowThreshold, sLowThreshold, vLowThreshold], dtype=np.uint8),
+              np.array([hHighThreshold, sHighThreshold, vHighThreshold], dtype=np.uint8))
+    print(result)
+    return result

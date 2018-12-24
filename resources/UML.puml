@@ -1,0 +1,71 @@
+@startuml
+class main_window {
+  +{field} camera
+  +{field} sound_player
+  +{field} sound_picker
+  +{field} options_page
+  +{method} run_camera()
+}
+
+class options_page {
+    +{field} camera
+}
+
+class sound_picker {
+    +sound_player
+}
+
+class camera {
+        -{field} lower_skin
+        -{field} upper_skin
+        -{field} rectangles
+        -{field} image
+        -{field} roi
+        -{field} roi_size
+        -{field} rect_size
+        +{field} nsamples
+        +{field} processor
+        +{field} l_offset, {field} h_offset
+        -{field} show_input
+        -{field} show_hsv
+        -{field} show_mask
+
+        -{method} draw_calibration_rectangle
+        +{method} run
+}
+
+class image_processor {
+        -{field} nsamples
+        -{field} drawings
+        +{field} event_emitter
+        -{field} mute
+        +{method} initialize_offset
+        +{method} get_skin_threshold
+        +{method} process_image
+        -{method} predict_image
+        -{method} get_mask
+        -{method} get_angle
+        -{method} get_median
+}
+
+class player {
+    +{method} play
+}
+
+class sound_player {
+        +{field} event_emitter
+        -{field} prev_prediction
+        -{field} sound_dict
+        -{method} on_prediction
+        +{method} clear_sound
+        +{method} set_sound
+        +{method} play_sign
+}
+camera --* image_processor
+options_page --* main_window
+sound_picker --* main_window
+camera --* options_page
+sound_picker --* sound_player
+camera --* main_window
+sound_player --* player
+@enduml
