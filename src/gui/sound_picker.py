@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QFileDialog
 from gui.generated.ui_sound_picker import Ui_SoundPickerForm
-import os
+import os,sys
 
 
 class SoundPicker(QWidget):
@@ -15,7 +15,7 @@ class SoundPicker(QWidget):
 
     def init_default_sounds(self):
         files = []
-        for (dir, _, filenames) in os.walk(os.path.abspath('./resources/default_sounds')):
+        for (dir, _, filenames) in os.walk(os.path.join(sys.path[0], 'resources/default_sounds')):
             for file in filenames:
                 files.append(os.path.join(dir, file))
         self.sound_player.set_sound('1', files[0])

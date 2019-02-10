@@ -1,5 +1,5 @@
-import cv2
 import keyboard
+import cv2
 
 
 class Camera:

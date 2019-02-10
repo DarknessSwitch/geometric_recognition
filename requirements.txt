@@ -1,0 +1,7 @@
+keyboard==0.13.2
+numpy==1.16.1
+opencv-python==4.0.0.21
+PyAudio==0.2.11
+pymitter==0.2.3
+PyQt5==5.11.3
+PyQt5-sip==4.19.13

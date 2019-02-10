@@ -57,7 +57,7 @@ class ImageProcessor:
         return result
 
     def predict_image(self, img, mask):
-        _, contours, hierarchy = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+        contours, hierarchy = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
         if len(contours) > 0:
             cnt = max(contours, key=lambda x: cv2.contourArea(x))
             eps = 0.003 * cv2.arcLength(cnt, True)
