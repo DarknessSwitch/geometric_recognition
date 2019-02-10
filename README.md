@@ -8,4 +8,4 @@ How to launch:
 2. To install dependecies run "pip install -r requirements.txt".
 3. To launch the app run "python src\main.py".
 
-Sounds are muted by default. To unmute, go to option tab.
+Sounds are muted by default. To unmute, go to the options tab.
